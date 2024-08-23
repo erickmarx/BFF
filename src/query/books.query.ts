@@ -1,4 +1,11 @@
+import { ExampleAPI } from "../api/example-api";
 import { bookDB } from "../book";
 import { Book } from "./interface/book.interface";
 
-export const books: () => Book[] = () => bookDB;
+const anyApi = new ExampleAPI();
+
+export const books: () => Promise<Book[]> = async () => {
+  await anyApi.getHealth();
+
+  return bookDB;
+};

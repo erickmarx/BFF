@@ -4,7 +4,7 @@ import { IMutation } from "./mutation/interface/mutation.interface";
 import { books } from "./query/books.query";
 import { Book } from "./query/interface/book.interface";
 
-export const query: { books: () => Book[] } = { books };
+export const query: { books: () => Promise<Book[]> } = { books: books };
 
 export const mutations: {
   addBook: IMutation<AddBookDTO, Book>;
