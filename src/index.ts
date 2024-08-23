@@ -1,9 +1,11 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { resolvers } from "./resolvers";
-import { typeDefs } from "./type-defs";
+import { readFileSync } from "fs";
 
-const main = async () => {
+async function main() {
+  const typeDefs = readFileSync("src/schema.graphql", { encoding: "utf-8" });
+
   const server = new ApolloServer({
     typeDefs,
     resolvers,
