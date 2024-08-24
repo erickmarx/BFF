@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate": "gql-gen --config codegen.yml",
     "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "start": "npm run compile && node ./dist/index.js",
+    "generate": "gql-gen --config codegen.yml"
   },
   "keywords": [],
   "author": "",
@@ -17,8 +17,11 @@
     "graphql": "^16.9.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.9",
+    "@graphql-codegen/typescript-resolvers": "^4.2.1",
     "@types/node": "^22.5.0",
-    "typescript": "^5.5.4",
-    "graphql-codegen-typescript-common": "0.18.2"
+    "graphql-codegen-typescript-common": "0.18.2",
+    "typescript": "^5.5.4"
   }
 }

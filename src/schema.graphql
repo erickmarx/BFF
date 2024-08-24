@@ -3,13 +3,9 @@ type Query {
   authors: [Author]
 }
 
-type Mutation {
-  addBook(title: String!, author: AuthorInput!): Book
-}
-
-input AuthorInput {
-  name: String!
-  release: String!
+type Author {
+  name: String
+  release: String
 }
 
 type Book {
@@ -17,7 +13,11 @@ type Book {
   author: Author
 }
 
-type Author {
-  name: String
-  release: String
+type Mutation {
+  addBook(title: String!, author: AuthorInput!): Book
+}
+
+input AuthorInput {
+  name: String!
+  release: String!
 }
