@@ -9,8 +9,9 @@ export class BookMutation {
       title: data.title,
       author: data.author,
     };
+
     bookDB.push(newBook);
-    console.log(bookDB);
+
     return newBook;
   }
 }

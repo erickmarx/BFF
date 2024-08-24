@@ -1,5 +1,5 @@
 import { QueryResolvers, MutationResolvers } from "./generated/graphql";
-import { BookMutation } from "./mutation/add-book.mutation";
+import { BookMutation } from "./mutation/book.mutation";
 import { AddBookDTO } from "./mutation/interface/add-book.interface";
 import { IMutation } from "./mutation/interface/mutation.interface";
 import { BooksQuery } from "./query/books.query";
