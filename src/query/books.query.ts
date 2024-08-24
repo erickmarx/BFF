@@ -4,8 +4,10 @@ import { Book } from "./interface/book.interface";
 
 const anyApi = new ExampleAPI();
 
-export const books: () => Promise<Book[]> = async () => {
-  await anyApi.getHealth();
+export class BooksQuery {
+  public static async GetBooks(): Promise<Book[]> {
+    await anyApi.getHealth();
 
-  return bookDB;
-};
+    return bookDB;
+  }
+}

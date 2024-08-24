@@ -1,12 +1,16 @@
 import { bookDB } from "../book";
 import { Book } from "../query/interface/book.interface";
+import { AddBookDTO } from "./interface/add-book.interface";
 
-export function addBook(
-  _,
-  { title, author }: { title: string; author: any }
-): Book {
-  const newBook = { id: String(bookDB.length + 1), title, author };
-  bookDB.push(newBook);
-  console.log(bookDB);
-  return newBook;
+export class BookMutation {
+  public static AddBook(data: AddBookDTO): Book {
+    const newBook = {
+      id: String(bookDB.length + 1),
+      title: data.title,
+      author: data.author,
+    };
+    bookDB.push(newBook);
+    console.log(bookDB);
+    return newBook;
+  }
 }

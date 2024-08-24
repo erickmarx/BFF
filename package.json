@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "generate": "gql-gen --config codegen.yml",
     "compile": "tsc",
     "start": "npm run compile && node ./dist/index.js"
   },
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "graphql-codegen-typescript-common": "0.18.2"
   }
 }
