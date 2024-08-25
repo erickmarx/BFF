@@ -2,6 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Recipe } from './recipe.schema';
 import { CreateRecipeDTO } from './dto/create-recipe.dto';
 import { FilterDTO } from './dto/filter.dto';
+import { IngredientsAPI } from '../common/api/ingredients-api';
+import { ShopAPI } from '../common/api/shop-api';
 
 const recipeMock: Recipe[] = [
   {
@@ -22,6 +24,11 @@ const recipeMock: Recipe[] = [
 
 @Injectable()
 export class RecipeService {
+  constructor(
+    private ingredientsAPI: IngredientsAPI,
+    private shopAPI: ShopAPI,
+  ) {}
+
   async findOneById(id: string): Promise<Recipe> {
     return recipeMock.find((recipe) => recipe.id === id);
   }
@@ -39,7 +46,7 @@ export class RecipeService {
 
     recipeMock.push(data);
 
-    console.log(data)
+    console.log(data);
 
     return data;
   }

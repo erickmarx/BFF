@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { RecipeResolver } from './recipe.resolver';
 import { RecipeService } from './recipe.service';
+import { APIModule } from '../common/api/api.module';
 
-@Module({ providers: [RecipeResolver, RecipeService] })
+@Module({ imports: [APIModule], providers: [RecipeResolver, RecipeService] })
 export class RecipeModule {}

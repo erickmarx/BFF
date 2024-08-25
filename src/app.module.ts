@@ -7,9 +7,11 @@ import { RecipeModule } from './recipe/recipe.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { ShopAPI } from './common/api/shop-api';
 import { IngredientsAPI } from './common/api/ingredients-api';
+import { APIModule } from './common/api/api.module';
 
 @Module({
   imports: [
+    APIModule,
     RecipeModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       context: async () => {
