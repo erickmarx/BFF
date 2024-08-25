@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Recipe } from './recipe.schema';
 import { RecipeService } from './recipe.service';
 import { FilterDTO } from './dto/filter.dto';
@@ -9,7 +9,11 @@ export class RecipeResolver {
   constructor(private recipeService: RecipeService) {}
 
   @Query(() => Recipe)
-  async recipe(@Args('id') id: string): Promise<Recipe> {
+  async recipe(
+    @Context() context: any,
+    @Args('id') id: string,
+  ): Promise<Recipe> {
+    console.log(context.dataSources)
     return this.recipeService.findOneById(id);
   }
 

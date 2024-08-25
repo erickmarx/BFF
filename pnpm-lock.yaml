@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@apollo/datasource-rest':
+    specifier: ^6.3.0
+    version: 6.3.0(graphql@16.9.0)
   '@apollo/server':
     specifier: ^4.11.0
     version: 4.11.0(graphql@16.9.0)
@@ -168,6 +171,26 @@ packages:
       graphql: 16.9.0
     dev: false
 
+  /@apollo/datasource-rest@6.3.0(graphql@16.9.0):
+    resolution: {integrity: sha512-5YpAXY2VvkYySmaDl8G8Yt8qjOO89cqx7r+uchFjKGacS72L8nKxrLIzltjhQkLpyjwMLFLi2UDSCSMht+qGQA==}
+    engines: {node: '>=16.14'}
+    peerDependencies:
+      graphql: ^16.5.0
+    dependencies:
+      '@apollo/utils.fetcher': 3.1.0
+      '@apollo/utils.keyvaluecache': 3.1.0
+      '@apollo/utils.logger': 3.0.0
+      '@apollo/utils.withrequired': 3.0.0
+      '@types/http-cache-semantics': 4.0.4
+      graphql: 16.9.0
+      http-cache-semantics: 4.1.1
+      lodash.clonedeep: 4.5.0
+      lodash.isplainobject: 4.0.6
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /@apollo/protobufjs@1.2.7:
     resolution: {integrity: sha512-Lahx5zntHPZia35myYDBRuF58tlwPskwHc5CWBZC/4bMKB6siTBWwtMrkqXcsNwQiFSzSx5hKdRPUmemrEp3Gg==}
     hasBin: true
@@ -274,6 +297,11 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
+  /@apollo/utils.fetcher@3.1.0:
+    resolution: {integrity: sha512-Z3QAyrsQkvrdTuHAFwWDNd+0l50guwoQUoaDQssLOjkmnmVuvXlJykqlEJolio+4rFwBnWdoY1ByFdKaQEcm7A==}
+    engines: {node: '>=16'}
+    dev: false
+
   /@apollo/utils.isnodelike@2.0.1:
     resolution: {integrity: sha512-w41XyepR+jBEuVpoRM715N2ZD0xMD413UiJx8w5xnAZD2ZkSJnMJBoIzauK83kJpSgNuR6ywbV29jG9NmxjK0Q==}
     engines: {node: '>=14'}
@@ -287,9 +315,22 @@ packages:
       lru-cache: 7.18.3
     dev: false
 
+  /@apollo/utils.keyvaluecache@3.1.0:
+    resolution: {integrity: sha512-MM/DKIqpQQbuNG1gNPAlGc45THdWkroTmN8o/J09merFwf/LlZ7+lAfcHFDXIYIknwKmUjJrOMS3OxYbjrz2hA==}
+    engines: {node: '>=16.14'}
+    dependencies:
+      '@apollo/utils.logger': 3.0.0
+      lru-cache: 10.4.3
+    dev: false
+
   /@apollo/utils.logger@2.0.1:
     resolution: {integrity: sha512-YuplwLHaHf1oviidB7MxnCXAdHp3IqYV8n0momZ3JfLniae92eYqMIx+j5qJFX6WKJPs6q7bczmV4lXIsTu5Pg==}
     engines: {node: '>=14'}
+    dev: false
+
+  /@apollo/utils.logger@3.0.0:
+    resolution: {integrity: sha512-M8V8JOTH0F2qEi+ktPfw4RL7MvUycDfKp7aEap2eWXfL5SqWHN6jTLbj5f5fj1cceHpyaUSOZlvlaaryaxZAmg==}
+    engines: {node: '>=16'}
     dev: false
 
   /@apollo/utils.printwithreducedwhitespace@2.0.1(graphql@16.9.0):
@@ -347,6 +388,11 @@ packages:
   /@apollo/utils.withrequired@2.0.1:
     resolution: {integrity: sha512-YBDiuAX9i1lLc6GeTy1m7DGLFn/gMnvXqlalOIMjM7DeOgIacEjjfwPqb0M1CQ2v11HhR15d1NmxJoRCfrNqcA==}
     engines: {node: '>=14'}
+    dev: false
+
+  /@apollo/utils.withrequired@3.0.0:
+    resolution: {integrity: sha512-aaxeavfJ+RHboh7c2ofO5HHtQobGX4AgUujXP4CXpREHp9fQ9jPi6K9T1jrAKe7HIipoP0OJ1gd6JamSkFIpvA==}
+    engines: {node: '>=16'}
     dev: false
 
   /@apollographql/graphql-playground-html@1.6.29:
@@ -1585,6 +1631,10 @@ packages:
     dependencies:
       '@types/node': 20.16.1
     dev: true
+
+  /@types/http-cache-semantics@4.0.4:
+    resolution: {integrity: sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==}
+    dev: false
 
   /@types/http-errors@2.0.4:
     resolution: {integrity: sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==}
@@ -3400,6 +3450,10 @@ packages:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
 
+  /http-cache-semantics@4.1.1:
+    resolution: {integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==}
+    dev: false
+
   /http-errors@2.0.0:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
     engines: {node: '>= 0.8'}
@@ -4200,6 +4254,14 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash.clonedeep@4.5.0:
+    resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
+    dev: false
+
+  /lodash.isplainobject@4.0.6:
+    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
+    dev: false
+
   /lodash.memoize@4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
     dev: true
@@ -4238,7 +4300,6 @@ packages:
 
   /lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
-    dev: true
 
   /lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
