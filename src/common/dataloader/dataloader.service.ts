@@ -1,24 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import * as DataLoader from 'dataloader';
 import { IDataloaders } from './dataloader.interface';
-import { RecipeService } from '../../recipe/recipe.service';
-import { Recipe } from '../../recipe/recipe.schema';
+import { RecipeLoader } from './loaders/recipe-loader';
 
 @Injectable()
 export class DataloaderService {
-  constructor(private readonly recipeService: RecipeService) {}
+  constructor(private readonly recipeLoader: RecipeLoader) {}
 
   getLoaders(): IDataloaders {
     return {
       recipes: {
-        findByIds: this.recipesFindByIds(),
+        findByIds: this.recipeLoader.findByIds(),
       },
     };
-  }
-
-  private recipesFindByIds() {
-    return new DataLoader<string, Recipe>(
-      async (ids) => await this.recipeService.findByIds(ids.map(String)),
-    );
   }
 }
