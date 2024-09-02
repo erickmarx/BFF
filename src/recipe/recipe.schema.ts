@@ -14,6 +14,15 @@ export class Recipe {
   @Field()
   creationDate: Date;
 
-  @Field(() => [String])
-  ingredients: string[];
+  @Field(() => [Ingredients])
+  ingredients: Ingredients[];
+}
+
+@ObjectType({ description: 'ingredients' })
+export class Ingredients {
+  @Field(() => String)
+  name: string;
+
+  @Field(() => Number)
+  quantity: number;
 }

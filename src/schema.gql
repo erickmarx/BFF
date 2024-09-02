@@ -7,7 +7,7 @@ type Recipe {
   id: ID!
   description: String
   creationDate: DateTime!
-  ingredients: [String!]!
+  ingredients: [Ingredients!]!
 }
 
 """
@@ -15,9 +15,16 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+"""ingredients"""
+type Ingredients {
+  name: String!
+  quantity: Float!
+}
+
 type Query {
   recipe(id: String!): Recipe!
   recipes(filter: FilterDTO): [Recipe!]!
+  recipesById(ids: [String!]!): [Recipe!]!
 }
 
 input FilterDTO {
@@ -34,5 +41,10 @@ type Mutation {
 input CreateRecipeDTO {
   title: String!
   description: String
-  ingredients: [String!]!
+  ingredients: [IngredientsDTO!]!
+}
+
+input IngredientsDTO {
+  name: String!
+  quantity: Float!
 }

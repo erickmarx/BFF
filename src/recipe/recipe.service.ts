@@ -11,14 +11,22 @@ const recipeMock: Recipe[] = [
     title: 'Recipe 1',
     description: 'Description 1',
     creationDate: new Date(),
-    ingredients: ['Flour', 'Sugar', 'Butter'],
+    ingredients: [
+      { name: 'Flour', quantity: 1 },
+      { name: 'Sugar', quantity: 1 },
+      { name: 'Butter', quantity: 1 },
+    ],
   },
   {
     id: '2',
     title: 'Recipe 2',
     description: 'Description 2',
     creationDate: new Date(),
-    ingredients: ['Flour', 'Sugar', 'Butter'],
+    ingredients: [
+      { name: 'Flour', quantity: 1 },
+      { name: 'Sugar', quantity: 1 },
+      { name: 'Butter', quantity: 1 },
+    ],
   },
 ];
 
@@ -33,8 +41,12 @@ export class RecipeService {
     return recipeMock.find((recipe) => recipe.id === id);
   }
 
-  async findAll(filter: FilterDTO): Promise<Recipe[]> {
+  async findAll(filter?: FilterDTO): Promise<Recipe[]> {
     return recipeMock;
+  }
+
+  async findByIds(ids: string[]): Promise<Recipe[]> {
+    return recipeMock.filter((recipe) => ids.includes(recipe.id));
   }
 
   async create(recipe: CreateRecipeDTO): Promise<Recipe> {

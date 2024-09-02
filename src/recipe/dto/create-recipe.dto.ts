@@ -1,8 +1,9 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsOptional, Length, MaxLength } from 'class-validator';
+import { IsOptional, Length, Max, MaxLength } from 'class-validator';
+import { Ingredients, Recipe } from '../recipe.schema';
 
 @InputType()
-export class CreateRecipeDTO {
+export class CreateRecipeDTO implements Omit<Recipe, 'id' | 'creationDate'> {
   @Field()
   @MaxLength(30)
   title: string;
@@ -12,6 +13,17 @@ export class CreateRecipeDTO {
   @Length(30, 255)
   description?: string;
 
-  @Field(() => [String])
-  ingredients: string[];
+  @Field(() => [IngredientsDTO])
+  ingredients: IngredientsDTO[];
+}
+
+@InputType()
+class IngredientsDTO implements Ingredients {
+  @Field()
+  @MaxLength(30)
+  name: string;
+
+  @Field()
+  @Max(30)
+  quantity: number;
 }

@@ -5,28 +5,30 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { RecipeModule } from './recipe/recipe.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
-import { ShopAPI } from './common/api/shop-api';
-import { IngredientsAPI } from './common/api/ingredients-api';
 import { APIModule } from './common/api/api.module';
+import { DataloaderModule } from './common/dataloader/dataloader.module';
+import { DataloaderService } from './common/dataloader/dataloader.service';
 
 @Module({
   imports: [
     APIModule,
     RecipeModule,
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      context: async () => {
-        return {
-          dataSources: {
-            shopAPI: new ShopAPI(),
-            ingredientsAPI: new IngredientsAPI(),
-          },
-        };
-      },
-      include: [RecipeModule],
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
-      playground: false,
-      plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      imports: [DataloaderModule],
+      useFactory: (dataloaderService: DataloaderService) => ({
+        context: () => {
+          return {
+            traceId: '1234',
+            loaders: dataloaderService.getLoaders(),
+          };
+        },
+        include: [RecipeModule],
+        playground: false,
+        plugins: [ApolloServerPluginLandingPageLocalDefault()],
+        autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      }),
+      inject: [DataloaderService],
     }),
   ],
   controllers: [AppController],
