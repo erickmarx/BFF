@@ -1,0 +1,23 @@
+name: bff
+
+services:
+  bff:
+    container_name: bff
+    build:
+      context: .
+    environment:
+      - NODE_ENV=production
+    restart: on-failure
+    ports:
+      - ${PORT:-3000}:${PORT:-3000}
+    env_file:
+      - .env
+
+  redis:
+    container_name: redis
+    image: redis:6.0.9
+    ports:
+      - 6379:6379
+    environment:
+      REDIS_ARGS: "--requirepass password --user username on >password ~* allcommands --user default off nopass nocommands"
+
