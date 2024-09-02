@@ -48,3 +48,7 @@ input IngredientsDTO {
   name: String!
   quantity: Float!
 }
+
+type Subscription {
+  teste: String!
+}

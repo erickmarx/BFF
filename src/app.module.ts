@@ -17,16 +17,19 @@ import { DataloaderService } from './common/dataloader/dataloader.service';
       driver: ApolloDriver,
       imports: [DataloaderModule],
       useFactory: (dataloaderService: DataloaderService) => ({
+        include: [RecipeModule],
         context: () => {
           return {
             traceId: '1234',
             loaders: dataloaderService.getLoaders(),
           };
         },
-        include: [RecipeModule],
         playground: false,
         plugins: [ApolloServerPluginLandingPageLocalDefault()],
         autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+        subscriptions: {
+          'graphql-ws': true,
+        },
       }),
       inject: [DataloaderService],
     }),

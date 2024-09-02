@@ -4,6 +4,7 @@ import { RecipeService } from './recipe.service';
 import { FilterDTO } from './dto/filter.dto';
 import { CreateRecipeDTO } from './dto/create-recipe.dto';
 import { IDataloaders } from '../common/dataloader/dataloader.interface';
+import { pubSub } from '../common/pub-sub';
 
 @Resolver(() => Recipe)
 export class RecipeResolver {
@@ -11,6 +12,7 @@ export class RecipeResolver {
 
   @Query(() => Recipe)
   async recipe(@Args('id') id: string): Promise<Recipe> {
+    pubSub.publish('teste', { teste: 'teste' });
     return this.recipeService.findOneById(id);
   }
 
