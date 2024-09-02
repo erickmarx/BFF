@@ -4,7 +4,6 @@ import { RecipeService } from './recipe.service';
 import { FilterDTO } from './dto/filter.dto';
 import { CreateRecipeDTO } from './dto/create-recipe.dto';
 import { IDataloaders } from '../common/dataloader/dataloader.interface';
-import { pubSub } from '../common/pub-sub';
 
 @Resolver(() => Recipe)
 export class RecipeResolver {
@@ -12,15 +11,14 @@ export class RecipeResolver {
 
   @Query(() => Recipe)
   async recipe(@Args('id') id: string): Promise<Recipe> {
-    pubSub.publish('teste', { teste: 'teste' });
-    return this.recipeService.findOneById(id);
+    return await this.recipeService.findOneById(id);
   }
 
   @Query(() => [Recipe])
   async recipes(
     @Args('filter', { nullable: true }) filter?: FilterDTO,
   ): Promise<Recipe[]> {
-    return this.recipeService.findAll(filter);
+    return await this.recipeService.findAll(filter);
   }
 
   @Query(() => [Recipe])
@@ -33,7 +31,7 @@ export class RecipeResolver {
 
   @Mutation(() => Recipe)
   async createRecipe(@Args('recipe') recipe: CreateRecipeDTO): Promise<Recipe> {
-    return this.recipeService.create(recipe);
+    return await this.recipeService.create(recipe);
   }
 
   @Mutation(() => Recipe)
@@ -41,11 +39,11 @@ export class RecipeResolver {
     @Args('id') id: string,
     @Args('recipe') recipe: CreateRecipeDTO,
   ): Promise<Recipe> {
-    return this.recipeService.update(id, recipe);
+    return await this.recipeService.update(id, recipe);
   }
 
   @Mutation(() => Boolean)
   async removeRecipe(@Args('id') id: string): Promise<boolean> {
-    return this.recipeService.remove(id);
+    return await this.recipeService.remove(id);
   }
 }
