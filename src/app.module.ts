@@ -10,7 +10,7 @@ import { DataloaderModule } from './common/dataloader/dataloader.module';
 import { DataloaderService } from './common/dataloader/dataloader.service';
 import { PubSub } from 'graphql-subscriptions';
 
-const pubSub = new PubSub();
+export const pubSub = new PubSub();
 
 @Module({
   imports: [

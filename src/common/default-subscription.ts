@@ -1,6 +1,6 @@
 import { SubscriptionOptions } from '@nestjs/graphql';
 
-export function DefaultSubscription(
+export function FilterSubscription(
   cb: SubscriptionOptions['filter'],
 ): SubscriptionOptions {
   return {
