@@ -50,5 +50,5 @@ input IngredientsDTO {
 }
 
 type Subscription {
-  teste: String!
+  implementation(id: String!): Recipe!
 }

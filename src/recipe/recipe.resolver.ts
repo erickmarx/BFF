@@ -4,13 +4,28 @@ import { RecipeService } from './recipe.service';
 import { FilterDTO } from './dto/filter.dto';
 import { CreateRecipeDTO } from './dto/create-recipe.dto';
 import { IDataloaders } from '../common/dataloader/dataloader.interface';
+import { PubSub } from 'graphql-subscriptions';
 
 @Resolver(() => Recipe)
 export class RecipeResolver {
   constructor(private recipeService: RecipeService) {}
 
   @Query(() => Recipe)
-  async recipe(@Args('id') id: string): Promise<Recipe> {
+  async recipe(
+    @Args('id') id: string,
+    @Context('pubSub') pubSub: PubSub,
+  ): Promise<Recipe> {
+    await pubSub.publish('implementation',  {
+      id: '2',
+      title: 'Recipe 2',
+      description: 'Description 2',
+      creationDate: new Date(),
+      ingredients: [
+        { name: 'Flour', quantity: 1 },
+        { name: 'Sugar', quantity: 1 },
+        { name: 'Butter', quantity: 1 },
+      ],
+    },);
     return await this.recipeService.findOneById(id);
   }
 

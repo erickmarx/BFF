@@ -8,6 +8,9 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { APIModule } from './common/api/api.module';
 import { DataloaderModule } from './common/dataloader/dataloader.module';
 import { DataloaderService } from './common/dataloader/dataloader.service';
+import { PubSub } from 'graphql-subscriptions';
+
+const pubSub = new PubSub();
 
 @Module({
   imports: [
@@ -21,6 +24,7 @@ import { DataloaderService } from './common/dataloader/dataloader.service';
         context: () => {
           return {
             traceId: '1234',
+            pubSub,
             loaders: dataloaderService.getLoaders(),
           };
         },
