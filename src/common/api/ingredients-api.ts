@@ -1,9 +1,10 @@
+import { APIConfig } from '../config/api';
 import { TracedRESTDataSource } from '../traced-rest-data-source';
 
 export class IngredientsAPI extends TracedRESTDataSource {
-  baseURL = 'http://localhost:3001';
+  baseURL = APIConfig.ingredients.baseURL;
 
   async getIngredients() {
-    return await this.get('/ingredients');
+    return await this.get(APIConfig.ingredients.endpoint);
   }
 }
