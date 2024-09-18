@@ -1,14 +1,11 @@
-export const APIConfig = {
-  ingredients: {
-    baseURL: process.env.INGREDIENTS_BASE_URL || 'http://localhost:3000',
-    endpoint: process.env.INGREDIENTS_ENDPOINT || '/ingredients',
+export const API_CONFIG = {
+  cart: {
+    baseURL: process.env.CART_BASE_URL || 'http://localhost:3000/cart',
   },
-  recipes: {
-    baseURL: process.env.RECIPES_BASE_URL || 'http://localhost:3000',
-    endpoint: process.env.RECIPES_ENDPOINT || '/recipes',
+  recipe: {
+    baseURL: process.env.RECIPE_BASE_URL || 'http://localhost:3000/recipe/',
   },
   shop: {
-    baseURL: process.env.SHOP_BASE_URL || 'http://localhost:3000',
-    endpoint: process.env.SHOP_ENDPOINT || '/shop',
+    baseURL: process.env.SHOP_BASE_URL || 'http://localhost:3000/shop',
   },
 };

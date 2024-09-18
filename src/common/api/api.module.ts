@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { IngredientsAPI } from './ingredients-api';
+import { CartAPI } from './cart-api';
 import { ShopAPI } from './shop-api';
+import { RecipeAPI } from './recipe-api';
 
 @Module({
-  providers: [IngredientsAPI, ShopAPI],
-  exports: [IngredientsAPI, ShopAPI],
+  providers: [CartAPI, ShopAPI, RecipeAPI],
+  exports: [CartAPI, ShopAPI, RecipeAPI],
 })
 export class APIModule {}

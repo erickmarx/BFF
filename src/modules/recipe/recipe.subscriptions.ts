@@ -1,7 +1,7 @@
 import { Args, Context, Resolver, Subscription } from '@nestjs/graphql';
 import { Recipe } from './recipe.schema';
 import { PubSub } from 'graphql-subscriptions';
-import { FilterSubscription } from '../common/default-subscription';
+import { FilterSubscription } from '../../common/filter-subscription';
 
 @Resolver(() => Recipe)
 export class RecipeSubscriptions {

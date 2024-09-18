@@ -1,11 +1,20 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { Recipe } from './recipe.schema';
-import { CreateRecipeDTO } from './dto/create-recipe.dto';
-import { FilterDTO } from './dto/filter.dto';
-import { IngredientsAPI } from '../common/api/ingredients-api';
-import { ShopAPI } from '../common/api/shop-api';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  NotFoundException,
+  Param,
+  Post,
+  Put,
+  Req,
+} from '@nestjs/common';
+import { IRecipe } from './interface/recipe.interface';
+import { FilterDTO } from '../../common/dto/filter.dto';
+import { ICreateRecipeDTO } from './interface/create-recipe-dto.interface';
+import { Request } from 'express';
 
-const recipeMock: Recipe[] = [
+const recipeMock: IRecipe[] = [
   {
     id: '1',
     title: 'Recipe 1',
@@ -30,26 +39,21 @@ const recipeMock: Recipe[] = [
   },
 ];
 
-@Injectable()
-export class RecipeService {
-  constructor(
-    private ingredientsAPI: IngredientsAPI,
-    private shopAPI: ShopAPI,
-  ) {}
-
-  async findOneById(id: string): Promise<Recipe> {
+@Controller('recipe')
+export class RecipeMockController {
+  @Get(':id')
+  async findOneById(@Param('id') id: string, @Req() req: Request): Promise<IRecipe> {
+    console.log(id);
     return recipeMock.find((recipe) => recipe.id === id);
   }
 
-  async findAll(filter?: FilterDTO): Promise<Recipe[]> {
+  @Get()
+  async findAll(filter?: FilterDTO): Promise<IRecipe[]> {
     return recipeMock;
   }
 
-  async findByIds(ids: string[]): Promise<Recipe[]> {
-    return recipeMock.filter((recipe) => ids.includes(recipe.id));
-  }
-
-  async create(recipe: CreateRecipeDTO): Promise<Recipe> {
+  @Post()
+  async create(@Body() recipe: ICreateRecipeDTO): Promise<IRecipe> {
     const data = {
       ...recipe,
       id: (recipeMock.length + 1).toString(),
@@ -63,7 +67,8 @@ export class RecipeService {
     return data;
   }
 
-  async update(id: string, recipe: CreateRecipeDTO): Promise<Recipe> {
+  @Put(':id')
+  async update(id: string, recipe: ICreateRecipeDTO): Promise<IRecipe> {
     const index = recipeMock.findIndex((recipe) => recipe.id === id);
 
     if (index < 0) {
@@ -78,6 +83,7 @@ export class RecipeService {
     return recipeMock[index];
   }
 
+  @Delete(':id')
   async remove(id: string): Promise<boolean> {
     const index = recipeMock.findIndex((recipe) => recipe.id === id);
 

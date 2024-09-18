@@ -1,5 +1,5 @@
 import DataLoader from 'dataloader';
-import { Recipe } from '../../recipe/recipe.schema';
+import { Recipe } from '../../modules/recipe/recipe.schema';
 
 export interface IDataloaders {
   recipes: {

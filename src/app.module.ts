@@ -3,12 +3,13 @@ import { AppController } from './app.controller';
 import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { RecipeModule } from './recipe/recipe.module';
+import { RecipeModule } from './modules/recipe/recipe.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { APIModule } from './common/api/api.module';
 import { DataloaderModule } from './common/dataloader/dataloader.module';
 import { DataloaderService } from './common/dataloader/dataloader.service';
 import { PubSub } from 'graphql-subscriptions';
+import { MockControllerModule } from './service-mock/service-mock.module';
 
 export const pubSub = new PubSub();
 
@@ -16,6 +17,7 @@ export const pubSub = new PubSub();
   imports: [
     APIModule,
     RecipeModule,
+    MockControllerModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       imports: [DataloaderModule],
